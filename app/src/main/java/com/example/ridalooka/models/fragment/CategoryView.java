@@ -1,4 +1,4 @@
-package com.example.ridalooka.models;
+package com.example.ridalooka.models.fragment;
 
 public class CategoryView {
     private String imageLink;

@@ -47,24 +47,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category Name"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Coupes"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textColor="@color/text_grey"
-                android:textColorHint="@color/text_grey" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Description"
                 android:textColor="@color/white"
                 android:textSize="18sp"

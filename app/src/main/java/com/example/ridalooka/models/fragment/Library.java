@@ -1,25 +1,25 @@
-package com.example.ridalooka.models;
+package com.example.ridalooka.models.fragment;
 
 public class Library {
-    private String name;
+    private String category;
     private int currentNumberOfGoal;
     private int overallNumberOfGoal;
 
     public Library() {
     }
 
-    public Library(String name, int currentNumberOfGoal, int overallNumberOfGoal) {
-        this.name = name;
+    public Library(String category, int currentNumberOfGoal, int overallNumberOfGoal) {
+        this.category = category;
         this.currentNumberOfGoal = currentNumberOfGoal;
         this.overallNumberOfGoal = overallNumberOfGoal;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getCurrentNumberOfGoal() {

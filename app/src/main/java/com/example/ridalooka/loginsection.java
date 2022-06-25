@@ -20,8 +20,7 @@ public class loginsection extends AppCompatActivity {
         setContentView(R.layout.activity_loginsection);
     }
 
-   edittext
-    textview buttonTextview =(TextView)findViewById(R.id.button);
+    TextView buttonTextview =(TextView)findViewById(R.id.button);
 
 
 }

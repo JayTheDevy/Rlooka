@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.ridalooka.models.*;
+
+import com.example.ridalooka.models.fragment.Library;
 
 public class LibraryFragment extends Fragment {
 
@@ -101,7 +102,7 @@ public class LibraryFragment extends Fragment {
             txtCat = holder.txtCat;
             txtNumGoals = holder.txtNumGoal;
 
-            txtCat.setText(libItem.getName());
+            txtCat.setText(libItem.getCategory());
             txtNumGoals.setText(libItem.getCurrentNumberOfGoal()+"/"+ libItem.getOverallNumberOfGoal());
         }
         @Override
