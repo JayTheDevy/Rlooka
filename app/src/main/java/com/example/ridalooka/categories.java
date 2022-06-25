@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.ridalooka.fragments.CategoryViewFragment;
+
 public class categories extends AppCompatActivity {
 
     private TextView txtHeader;

@@ -1,4 +1,4 @@
-package com.example.ridalooka;
+package com.example.ridalooka.fragments;
 
 import android.os.Bundle;
 
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.ridalooka.R;
 import com.example.ridalooka.models.fragment.Library;
 
 public class LibraryFragment extends Fragment {

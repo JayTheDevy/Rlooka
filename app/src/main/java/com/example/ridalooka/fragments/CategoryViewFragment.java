@@ -1,4 +1,4 @@
-package com.example.ridalooka;
+package com.example.ridalooka.fragments;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.ridalooka.R;
 import com.example.ridalooka.models.fragment.CategoryView;
 
 import java.util.ArrayList;
