@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RidaLooka">
         <activity
-            android:name=".Graphie"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

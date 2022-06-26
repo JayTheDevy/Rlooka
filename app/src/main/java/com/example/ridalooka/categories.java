@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.ridalooka.fragments.CarListGraph;
 import com.example.ridalooka.fragments.CategoryViewFragment;
 
 public class categories extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class categories extends AppCompatActivity {
 
         txtHeader = (TextView) findViewById(R.id.txtHeader);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container, new CategoryViewFragment()).commitNow();
+        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container, new CarListGraph()).commitNow();
     }
 
 }

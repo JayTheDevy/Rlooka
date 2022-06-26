@@ -8,7 +8,7 @@
     tools:context=".loginsection">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/LoginBtn"
         android:layout_width="172dp"
         android:layout_height="54dp"
         android:layout_marginStart="119dp"
@@ -19,11 +19,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/mPassword"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/mEmail"
         android:layout_width="362dp"
         android:layout_height="61dp"
         android:layout_marginStart="36dp"
@@ -39,7 +39,7 @@
         tools:text="jackyserumula@gmail.com" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/mPassword"
         android:layout_width="366dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -50,6 +50,6 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/mEmail"
         tools:text="dhasuidsha" />
 </androidx.constraintlayout.widget.ConstraintLayout>

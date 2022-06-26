@@ -8,7 +8,7 @@
     tools:context=".createacc">
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress4"
+        android:id="@+id/mEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="427dp"
@@ -22,7 +22,7 @@
         tools:text="Jackyserumulajxk17@gmail.com" />
 
     <EditText
-        android:id="@+id/editTextTextPassword4"
+        android:id="@+id/mPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -33,11 +33,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress4"
+        app:layout_constraintTop_toBottomOf="@+id/mEmail"
         tools:text="sfjkashfjk" />
 
     <EditText
-        android:id="@+id/editTextTextPassword5"
+        android:id="@+id/mConPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -47,18 +47,17 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword4"
+        app:layout_constraintTop_toBottomOf="@+id/mPassword"
         tools:text="dasdjkasjj" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/mCreatebtn"
         android:layout_width="211dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginBottom="69dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:text="Create Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword5" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
