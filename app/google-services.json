@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "579653936113",
+    "project_id": "rida-looka-593d4",
+    "storage_bucket": "rida-looka-593d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579653936113:android:2aa1bc9c11927149805a50",
+        "android_client_info": {
+          "package_name": "com.example.ridalooka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579653936113-a70ngmeac13jlkqvb8enng4ug3ibbirt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0MYUci5KZo0aFKsCZaojh4yz5xM9-Hts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579653936113-a70ngmeac13jlkqvb8enng4ug3ibbirt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

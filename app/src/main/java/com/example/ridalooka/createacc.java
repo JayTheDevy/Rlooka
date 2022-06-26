@@ -46,7 +46,7 @@ public class createacc extends AppCompatActivity {
          } else if(password.isEmpty()|| password.length()<8)
          {
              mPassword.setError("Enter password");
-         } else if(ConPassword.isEmpty()|| ConPassword.length()<8)
+         } else if(ConPassword.isEmpty() || ConPassword.length()<8)
          {
              mConPassword.setError("Password does not match");
          } else
