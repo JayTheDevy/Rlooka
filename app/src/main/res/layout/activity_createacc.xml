@@ -11,44 +11,43 @@
         android:id="@+id/mEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="427dp"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/mPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Jackyserumulajxk17@gmail.com" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/mPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/mConPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mEmail"
-        tools:text="sfjkashfjk" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/mConPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
+        android:hint="Confirm Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/mCreatebtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mPassword"
-        tools:text="dasdjkasjj" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/mCreatebtn"

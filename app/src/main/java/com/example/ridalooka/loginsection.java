@@ -22,38 +22,6 @@ public class loginsection extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loginsection);
-
-
-        mEmail = findViewById(R.id.mEmail);
-        mPassword = findViewById(R.id.mPassword);
-        LoginBtn = findViewById(R.id.LoginBtn);
-
-        LoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Performlogin();
-            }
-        });
-    }
-
-    private void Performlogin() {
-        String email= mEmail.getText().toString();
-        String password = mPassword.getText().toString();
-        if (email.matches(email)) {
-            mEmail.setError("Enter email tuu");
-
-        } else if (password.isEmpty() || password.length() < 8) {
-            mPassword.setError("Enter password");
-        } else {
-            progressDialog.setMessage(" Logging in....");
-            progressDialog.setTitle("Login");
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
-
-            //FireBase verifying the inputs then create a method onComplete that will send user to next activity after verifying
-        }
-
-
+        setContentView(R.layout.activity_login_page);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ridalooka.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,39 +19,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ridalooka.R;
+import com.example.ridalooka.models.data.Category;
 import com.example.ridalooka.models.fragment.Library;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LibraryFragment extends Fragment {
 
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private RecyclerView rec;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ProgressDialog progressDialog;
 
-    private String mParam1;
-    private String mParam2;
 
     public LibraryFragment() {
         // Required empty public constructor
-    }
-
-    public static LibraryFragment newInstance(String param1, String param2) {
-        LibraryFragment fragment = new LibraryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-        ((TextView) (getActivity().findViewById(R.id.txtHeader))).setText("Library");
     }
 
     @Override
@@ -64,16 +55,50 @@ public class LibraryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rec = (RecyclerView) view.findViewById(R.id.libRecycle);
+//
+//        ArrayList<Library> list = new ArrayList<>();
+//
+//        list.add(new Library("Coup",1,10));
+//        list.add(new Library("SUV",4,14));
+//        list.add(new Library("Hatch",10,11));
+//        list.add(new Library("Sports",2,22));
+//
+//        rec.setAdapter(new LibraryAdapter(list));
+//        rec.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<Library> list = new ArrayList<>();
+        PopulateData();
+    }
 
-        list.add(new Library("Coup",1,10));
-        list.add(new Library("SUV",4,14));
-        list.add(new Library("Hatch",10,11));
-        list.add(new Library("Sports",2,22));
+    private void PopulateData(){
+        progressDialog=new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading....");
+        progressDialog.setTitle("Loading");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
-        rec.setAdapter(new LibraryAdapter(list));
-        rec.setLayoutManager(new LinearLayoutManager(getContext()));
+        db.collection("Users").document(user.getEmail()).collection("Category")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Library> list = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Category category = document.toObject(Category.class);
+
+                                Library library = new Library(category);
+
+                                list.add(library);
+                            }
+                            rec.setAdapter(new LibraryAdapter(list));
+                            rec.setLayoutManager(new LinearLayoutManager(getContext()));
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+
+                        progressDialog.dismiss();
+                    }
+                });
     }
 
     public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder>{

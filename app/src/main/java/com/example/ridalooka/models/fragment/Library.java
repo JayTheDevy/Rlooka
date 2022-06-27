@@ -1,9 +1,12 @@
 package com.example.ridalooka.models.fragment;
 
+import com.example.ridalooka.models.data.Category;
+
 public class Library {
     private String category;
-    private int currentNumberOfGoal;
+    private int currentNumberOfGoal = 0;
     private int overallNumberOfGoal;
+    private Category categoryObj;
 
     public Library() {
     }
@@ -12,6 +15,12 @@ public class Library {
         this.category = category;
         this.currentNumberOfGoal = currentNumberOfGoal;
         this.overallNumberOfGoal = overallNumberOfGoal;
+    }
+
+    public Library(Category categoryObj) {
+        category = categoryObj.getName();
+        this.overallNumberOfGoal = categoryObj.getGoal();
+        this.currentNumberOfGoal = 0;
     }
 
     public String getCategory() {

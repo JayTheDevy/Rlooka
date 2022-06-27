@@ -1,66 +1,116 @@
 package com.example.ridalooka.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.ridalooka.R;
+import com.example.ridalooka.models.data.Car;
+import com.example.ridalooka.models.data.Category;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddCategoriesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddCategoriesFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText txtName, textDes;
+    private Button btnAddCategory;
+    private SeekBar seekBarGoals;
+    private TextView txtProgress;
+    private ProgressDialog progressDialog;
 
     public AddCategoriesFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ViewCatagoriesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddCategoriesFragment newInstance(String param1, String param2) {
-        AddCategoriesFragment fragment = new AddCategoriesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_category, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        txtName = (EditText) view.findViewById(R.id.txtName);
+        textDes = (EditText) view.findViewById(R.id.txtDescription);
+
+        btnAddCategory = (Button) view.findViewById(R.id.btnAddCategory);
+        seekBarGoals = (SeekBar) view.findViewById(R.id.seekBarGoals);
+
+        txtProgress = ((TextView) (view.findViewById(R.id.txtProgress)));
+
+        btnAddCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Capture();
+            }
+        });
+
+        seekBarGoals.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                ((TextView) (view.findViewById(R.id.textView9))).setText("Goals: "+ i);
+                txtProgress.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    private void Capture(){
+        Category category = new Category();
+        category.setGoal(Integer.parseInt(txtProgress.getText().toString()));
+        category.setDescription(textDes.getText().toString());
+        category.setName(txtName.getText().toString());
+
+        Collect(category);
+    }
+
+    private void Collect(Category category) {
+        progressDialog=new ProgressDialog(getContext());
+        progressDialog.setMessage("Registering....");
+        progressDialog.setTitle("Registration");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        db.collection("Users").document(user.getEmail()).collection("Category")
+                .document(category.getName()).set(category)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                progressDialog.dismiss();
+            }
+        });
+
     }
 }

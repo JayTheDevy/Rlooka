@@ -3,18 +3,28 @@ package com.example.ridalooka.models.data;
 public class Car {
     private String category;
     private String description;
-    private long date;
+    private String name;
+    private String imgUrl;
 
     public Car() {}
 
-    public Car(String category, String description, long date) {
+    public Car(String category, String description, String name, String imgUrl) {
         this.category = category;
         this.description = description;
-        this.date = date;
+        this.name = name;
+        this.imgUrl = imgUrl;
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setCategory(String category) {
@@ -29,11 +39,11 @@ public class Car {
         this.description = description;
     }
 
-    public long getDate() {
-        return date;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

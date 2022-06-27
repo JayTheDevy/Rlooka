@@ -1,5 +1,6 @@
 package com.example.ridalooka.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,60 +10,42 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.ridalooka.R;
+import com.example.ridalooka.models.data.Car;
+import com.example.ridalooka.models.data.Category;
 import com.example.ridalooka.models.fragment.CategoryView;
+import com.example.ridalooka.models.fragment.Library;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryViewFragment extends Fragment {
 
-    private RecyclerView rec;
-    
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView rec;
+
+    private ProgressDialog progressDialog;
+    private String category;
 
     public CategoryViewFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CategoryViewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CategoryViewFragment newInstance(String param1, String param2) {
-        CategoryViewFragment fragment = new CategoryViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,6 +77,33 @@ public class CategoryViewFragment extends Fragment {
         rec.setLayoutManager(new GridLayoutManager(getContext(),3, LinearLayoutManager.VERTICAL,false));
     }
 
+    private void populateData(){
+        db.collection("Users").document(user.getEmail()).collection("Category")
+                .document("Category").collection("cars").get().
+                addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<CategoryView> list = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Car car = document.toObject(Car.class);
+
+                                CategoryView library = new CategoryView(car.getImgUrl());
+
+                                list.add(library);
+                            }
+                            rec.setAdapter(new CategoryViewAdapter(list));
+                            rec.setLayoutManager(new LinearLayoutManager(getContext()));
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+
+                        progressDialog.dismiss();
+                    }
+                });
+    }
+
     public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewFragment.CategoryViewAdapter.ViewHolder>{
 
         List<CategoryView> categoryViewList;
@@ -119,6 +129,7 @@ public class CategoryViewFragment extends Fragment {
             ImageButton imgBtn = holder.imgBtn;
 
             // TODO: Handle all u need to handle  TO MAKE THE IMAGE WORK
+
             if(cvItem.getImageLink() != null)
                 imgBtn.setImageBitmap(null);
             else // todo: Delete the resource part because I am using it to test without the firebase
