@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ridalooka.R;
+import com.example.ridalooka.categories;
 import com.example.ridalooka.models.data.Category;
 import com.example.ridalooka.models.fragment.Library;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,12 +37,21 @@ public class LibraryFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private RecyclerView rec;
+    private FloatingActionButton addCategory;
 
     private ProgressDialog progressDialog;
 
 
     public LibraryFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        ((TextView) (getActivity().findViewById(R.id.txtHeader))).setText("Library");
     }
 
     @Override
@@ -55,6 +66,14 @@ public class LibraryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         rec = (RecyclerView) view.findViewById(R.id.libRecycle);
+        addCategory = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddCategory);
+
+        addCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((categories) getActivity()).toAddCar();
+            }
+        });
 //
 //        ArrayList<Library> list = new ArrayList<>();
 //
