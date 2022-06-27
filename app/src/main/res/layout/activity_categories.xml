@@ -31,53 +31,46 @@
             app:layout_constraintVertical_bias="0.364" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:onClick="toLibrary"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btnLibrary"
+            android:layout_width="38dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="26dp"
+            android:clickable="true"
+            android:onClick="toLibrary"
+            app:srcCompat="@drawable/ic_library" />
+
+        <ImageView
+            android:id="@+id/btnGrapgh"
+            android:layout_width="80dp"
+            android:layout_height="69dp"
+            android:layout_marginLeft="30dp"
+            android:clickable="true"
+            android:onClick="toGraph"
+            app:srcCompat="@drawable/car" />
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/categorie_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
     </FrameLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
-        android:name="com.example.ridalooka.fragments.naviigate"
-        android:layout_width="0dp"
-        android:layout_height="85dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="80dp"
-        android:layout_height="69dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorie_fragment_container"
-        app:srcCompat="@drawable/car" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="95dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/categorie_fragment_container"
-        app:srcCompat="@drawable/ic_plus"
-        tools:layout_editor_absoluteX="158dp"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="38dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="26dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/categorie_fragment_container"
-        app:srcCompat="@drawable/ic_library" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,7 +45,10 @@ public class CategoryViewFragment extends Fragment {
     public CategoryViewFragment() {
         // Required empty public constructor
     }
-
+    public CategoryViewFragment(String category) {
+        // Required empty public constructor
+        this.category = category;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +82,7 @@ public class CategoryViewFragment extends Fragment {
 
     private void populateData(){
         db.collection("Users").document(user.getEmail()).collection("Category")
-                .document("Category").collection("cars").get().
+                .document(category).collection("cars").get().
                 addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

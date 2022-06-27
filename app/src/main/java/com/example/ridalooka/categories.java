@@ -1,7 +1,10 @@
 package com.example.ridalooka;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,38 +29,24 @@ public class categories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new LibraryFragment()).commit();
+
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        new Button().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.chart:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new CarListGraphFragment()).commit();
-                        return true;
-                    case R.id.lib:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new LibraryFragment()).commit();
-                        return true;
-                }
-
-                return false;
-            }
-        });
     }
+
 
     public void toAddCategory(View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new AddCategoriesFragment()).commit();
     }
-
+    public void toLibrary(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new LibraryFragment()).commit();
+    }
+    public void toGraph(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new CarListGraphFragment()).commit();
+    }
     public void toAddCar(String category){
         getSupportFragmentManager().beginTransaction().replace(R.id.categorie_fragment_container,new AddCarFragment(category)).commit();
     }

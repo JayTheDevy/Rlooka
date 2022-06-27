@@ -68,23 +68,6 @@ public class LibraryFragment extends Fragment {
         rec = (RecyclerView) view.findViewById(R.id.libRecycle);
         addCategory = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddCategory);
 
-        addCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((categories) getActivity()).toAddCar();
-            }
-        });
-//
-//        ArrayList<Library> list = new ArrayList<>();
-//
-//        list.add(new Library("Coup",1,10));
-//        list.add(new Library("SUV",4,14));
-//        list.add(new Library("Hatch",10,11));
-//        list.add(new Library("Sports",2,22));
-//
-//        rec.setAdapter(new LibraryAdapter(list));
-//        rec.setLayoutManager(new LinearLayoutManager(getContext()));
-
         PopulateData();
     }
 
@@ -149,7 +132,19 @@ public class LibraryFragment extends Fragment {
 
             txtCat.setText(libItem.getCategory());
             txtNumGoals.setText(libItem.getCurrentNumberOfGoal()+"/"+ libItem.getOverallNumberOfGoal());
+
+            txtCat.setClickable(true);
+            txtCat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction().replace(R.id.categorie_fragment_container,
+                                    new AddCarFragment(txtCat.getText().toString())).commit();
+                }
+            });
         }
+
         @Override
         public int getItemCount() {
             return libItems.size();

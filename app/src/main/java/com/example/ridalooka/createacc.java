@@ -39,6 +39,11 @@ public class createacc extends AppCompatActivity {
         setContentView(R.layout.activity_createacc);
 
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null)
+            toMainActivity();
+
         mEmail = findViewById(R.id.mEmail);
         mPassword= findViewById(R.id.mPassword);
         mConPassword= findViewById(R.id.mConPassword);

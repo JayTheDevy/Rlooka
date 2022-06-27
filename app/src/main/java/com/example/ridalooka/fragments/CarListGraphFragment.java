@@ -13,16 +13,14 @@ import android.view.ViewGroup;
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 import com.example.ridalooka.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CarListGraphFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CarListGraphFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -52,8 +50,17 @@ public class CarListGraphFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("SUV", 34));
+        data.add(new ValueDataEntry("Coupe", 12));
+        data.add(new ValueDataEntry("Sports", 8));
+
+
+
         AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.chartView);
-        anyChartView.setChart(getPieChart(dataEntries));
+        anyChartView.setChart(getPieChart(data));
+
+
 
     }
 

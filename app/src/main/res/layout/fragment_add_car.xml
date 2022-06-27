@@ -11,17 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            >
 
             <TextView
                 android:id="@+id/textView5"
@@ -39,6 +43,26 @@
 
                 android:ems="10"
                 android:hint="Cilo"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColor="@color/text_grey"
+                android:textColorHint="@color/text_grey" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CategoryName"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Fastest Coupe"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:textColor="@color/text_grey"
@@ -71,11 +95,14 @@
 
         </LinearLayout>
 
+        </ScrollView>
+
         <Button
             android:id="@+id/btnAddCar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="35dp"
             android:background="@color/btn_blue"
             android:text="@string/btn_add"
@@ -84,7 +111,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView"
             app:layout_constraintVertical_bias="0.917" />
 
 
